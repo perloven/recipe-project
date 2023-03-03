@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class ShoppingEditComponent {
 
+  onAddIngredient(name: string, amount: string) {
+    console.log('Adding ingredient ' + name + " (" + amount + ")")
+  }
 }
