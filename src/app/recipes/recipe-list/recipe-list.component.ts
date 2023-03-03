@@ -14,9 +14,9 @@ export class RecipeListComponent {
     new Recipe('Banana bread', 'Moist and delicious', [new Ingredient('Banana', 2), new Ingredient('Flour', 3)],
       'https://www.simplyrecipes.com/thmb/tR-5eHAZ3lgNR6Yvu3yxdHMNpk8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Easy-Banana-Bread-LEAD-2-2-63dd39af009945d58f5bf4c2ae8d6070.jpg')
   ];
-  @Output('selectedRecipe') eventEmitter = new EventEmitter<Recipe>();
+  @Output() recipeWasSelected = new EventEmitter<Recipe>();
 
   onRecipeSelected(recipe: Recipe) {
-    this.eventEmitter.emit(recipe);
+    this.recipeWasSelected.emit(recipe);
   }
 }
