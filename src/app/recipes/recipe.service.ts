@@ -1,7 +1,9 @@
 import { Recipe } from "./recipe.model";
 import { Ingredient } from "../shared/ingredient.model";
-import { EventEmitter } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
+import { ShoppingListService } from "../shopping-list/shopping-list.service";
 
+@Injectable()
 export class RecipeService {
   recipeSelected = new EventEmitter<Recipe>();
   private recipes: Recipe[] = [
@@ -11,7 +13,14 @@ export class RecipeService {
       'https://www.simplyrecipes.com/thmb/tR-5eHAZ3lgNR6Yvu3yxdHMNpk8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Easy-Banana-Bread-LEAD-2-2-63dd39af009945d58f5bf4c2ae8d6070.jpg')
   ];
 
+  constructor(private shoppingListService: ShoppingListService) {
+  }
+
   getRecipes(): Recipe[] {
     return this.recipes.slice() // Copy array with slice.
+  }
+
+  addIngredientsToShoppingList(ingredients: Ingredient[]) {
+    this.shoppingListService.addIngredients(ingredients);
   }
 }
