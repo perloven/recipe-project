@@ -2,7 +2,7 @@ import { Ingredient } from "../shared/ingredient.model";
 import { EventEmitter } from "@angular/core";
 
 export class ShoppingListService {
-  ingredientAdded = new EventEmitter<Ingredient>();
+  ingredientsChanged = new EventEmitter<Ingredient[]>();
   private ingredients: Ingredient[] = [
     new Ingredient('Banana', 1),
     new Ingredient('Apple', 5)
@@ -10,7 +10,7 @@ export class ShoppingListService {
 
   addIngredient(ingredient: Ingredient): void {
     this.ingredients.push(ingredient);
-    this.ingredientAdded.emit(ingredient);
+    this.ingredientsChanged.emit(this.getIngredients());
   }
 
   getIngredients(): Ingredient[] {
