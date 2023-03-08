@@ -1,11 +1,10 @@
 import { Recipe } from "./recipe.model";
 import { Ingredient } from "../shared/ingredient.model";
-import { EventEmitter, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 
 @Injectable()
 export class RecipeService {
-  recipeSelected = new EventEmitter<Recipe>();
   private recipes: Recipe[] = [
     new Recipe('A Test Recipe', 'This is simply a test', [new Ingredient('Test ingredient', 1)],
       'https://assets.epicurious.com/photos/61f423f29c9591f7270e22c6/5:4/w_4171,h_3337,c_limit/Bouillabaise_RECIPE_20220125_1776_V1_final.jpg'),
