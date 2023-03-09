@@ -35,7 +35,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  onAddItem() {
+  onSubmit() {
     if (this.slForm.invalid) {
       return;
     }
@@ -49,6 +49,14 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
       this.shoppingListService.addIngredient(newIngredient);
     }
 
+    this.onClear();
+  }
+
+  onDelete() {
+    if (!this.editMode) {
+      return;
+    }
+    this.shoppingListService.deleteIngredient(this.editedItemIndex);
     this.onClear();
   }
 
