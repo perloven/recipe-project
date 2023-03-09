@@ -9,16 +9,23 @@ import { NgForm } from "@angular/forms";
   styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent {
-  @ViewChild('shoppingListForm') slForm: NgForm;
+  @ViewChild('itemForm') slForm: NgForm;
 
   constructor(private shoppingListService: ShoppingListService) {
   }
 
-  onAddIngredient() {
+  onAddItem() {
+    if (this.slForm.invalid) {
+      return;
+    }
     const newIngredient = new Ingredient(
       this.slForm.value.name,
       this.slForm.value.amount
     )
     this.shoppingListService.addIngredient(newIngredient);
+  }
+
+  onClear() {
+    this.slForm.reset();
   }
 }
