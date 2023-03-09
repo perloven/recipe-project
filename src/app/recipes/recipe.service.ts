@@ -2,9 +2,11 @@ import { Recipe } from "./recipe.model";
 import { Ingredient } from "../shared/ingredient.model";
 import { Injectable } from "@angular/core";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
+import { Subject } from "rxjs";
 
 @Injectable()
 export class RecipeService {
+  recipesChanged = new Subject<Recipe[]>();
   private recipes: Recipe[] = [
     new Recipe('A Test Recipe', 'This is simply a test', [new Ingredient('Test ingredient', 1)],
       'https://assets.epicurious.com/photos/61f423f29c9591f7270e22c6/5:4/w_4171,h_3337,c_limit/Bouillabaise_RECIPE_20220125_1776_V1_final.jpg'),
@@ -25,5 +27,19 @@ export class RecipeService {
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     this.shoppingListService.addIngredients(ingredients);
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.signalRecipesChanged();
+  }
+
+  updateRecipe(index: number, recipe: Recipe) {
+    this.recipes[index] = recipe;
+    this.signalRecipesChanged();
+  }
+
+  private signalRecipesChanged(): void {
+    this.recipesChanged.next(this.getRecipes());
   }
 }
