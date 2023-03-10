@@ -47,4 +47,9 @@ export class RecipeService {
     this.recipes.splice(index, 1);
     this.signalRecipesChanged();
   }
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes.slice();
+    this.signalRecipesChanged();
+  }
 }
