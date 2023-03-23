@@ -21,6 +21,7 @@ import { DataStorageService } from "./shared/data-storage.service";
 import { HttpClientModule } from "@angular/common/http";
 import { RecipesResolverService } from "./recipes/recipes-resolver.service";
 import { AuthComponent } from "./auth/auth.component";
+import { AuthService } from "./auth/auth.service";
 
 @NgModule({
   declarations: [
@@ -45,7 +46,13 @@ import { AuthComponent } from "./auth/auth.component";
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [ShoppingListService, RecipeService, DataStorageService, RecipesResolverService],
+  providers: [
+    ShoppingListService,
+    RecipeService,
+    DataStorageService,
+    RecipesResolverService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
