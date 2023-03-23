@@ -30,15 +30,16 @@ export class AuthComponent {
     } else {
       this.isLoading = true;
       this.authService.signup(email, password)
-        .subscribe(
-          resData => {
-            console.log(resData);
-            this.isLoading = false;
-          },
-          errorMessage => {
-            console.log(errorMessage);
-            this.error = errorMessage;
-            this.isLoading = false;
+        .subscribe({
+            next: resData => {
+              console.log(resData);
+              this.isLoading = false;
+            },
+            error: error => {
+              console.log(error.message);
+              this.error = error.message;
+              this.isLoading = false;
+            }
           }
         );
     }
