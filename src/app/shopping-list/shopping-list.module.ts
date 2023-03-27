@@ -2,15 +2,8 @@ import { NgModule } from "@angular/core";
 import { ShoppingListComponent } from "./shopping-list.component";
 import { ShoppingEditComponent } from "./shopping-edit/shopping-edit.component";
 import { FormsModule } from "@angular/forms";
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
-
-const routes: Routes = [
-  {
-    path: 'shopping-list',
-    component: ShoppingListComponent
-  }
-];
 
 @NgModule({
   declarations: [
@@ -19,7 +12,7 @@ const routes: Routes = [
   ],
   imports: [
     SharedModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild([{path: 'shopping-list', component: ShoppingListComponent}]),
     FormsModule
   ]
 })

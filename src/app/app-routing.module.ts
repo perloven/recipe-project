@@ -9,9 +9,6 @@ const appRoutes: Routes = [
     path: '',
     redirectTo: '/recipes',
     pathMatch: 'full'
-  }, {
-    path: 'auth',
-    component: AuthComponent
   }
   /* This stopped working when recipe routing was split off
   , {
