@@ -19,6 +19,7 @@ export class AuthService {
   private readonly webApiKey = 'AIzaSyDz7BhKS_xSPrc5TTqJuynfrvTbsg0A1I8';
   private readonly signupUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + this.webApiKey;
   private readonly loginUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + this.webApiKey;
+  private readonly userDataKey = 'userData'
   user = new BehaviorSubject<User>(null);
 
   constructor(private http: HttpClient, private router: Router) {
@@ -54,6 +55,7 @@ export class AuthService {
     const expirationDate = new Date(new Date().getTime() + (expiresIn * 1000));
     const user = new User(email, userId, token, expirationDate);
     this.user.next(user);
+    localStorage.setItem(this.userDataKey, JSON.stringify(user));
   }
 
   private handleError(errorResponse: HttpErrorResponse) {
@@ -73,6 +75,29 @@ export class AuthService {
         break;
     }
     return throwError(() => new Error(errorMessage));
+  }
+
+  autoLogin() {
+    const userData: {
+      email: string;
+      id: string;
+      _token: string;
+      _tokenExpirationDate: string;
+    } = JSON.parse(localStorage.getItem(this.userDataKey));
+    if (!userData) {
+      return;
+    }
+
+    const loadedUser = new User(
+      userData.email,
+      userData.id,
+      userData._token,
+      new Date(userData._tokenExpirationDate)
+    );
+
+    if (loadedUser.token) {
+      this.user.next(loadedUser);
+    }
   }
 
   logout() {
