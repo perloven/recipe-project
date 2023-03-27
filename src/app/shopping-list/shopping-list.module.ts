@@ -3,7 +3,7 @@ import { ShoppingListComponent } from "./shopping-list.component";
 import { ShoppingEditComponent } from "./shopping-edit/shopping-edit.component";
 import { FormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
-import { CommonModule } from "@angular/common";
+import { SharedModule } from "../shared/shared.module";
 
 const routes: Routes = [
   {
@@ -18,7 +18,7 @@ const routes: Routes = [
     ShoppingEditComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     RouterModule.forChild(routes),
     FormsModule
   ]
