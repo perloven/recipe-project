@@ -3,8 +3,8 @@
     <!--div *ngIf="error" class="alert alert-danger">
       <p>{{ error }}</p>
     </div-->
-    <!--app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert-->
-    <ng-template appPlaceholder></ng-template>
+    <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
+    <!--ng-template appPlaceholder></ng-template-->
 
     <form *ngIf="!isLoading" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
       <div class="form-group">

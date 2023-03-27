@@ -55,7 +55,7 @@ export class AuthComponent implements OnDestroy {
         error: error => {
           console.log(error.message);
           this.error = error.message;
-          this.showErrorAlert(error.message);
+          //this.showErrorAlert(error.message); // Used for dynamic alert component
           this.isLoading = false;
         }
       }
