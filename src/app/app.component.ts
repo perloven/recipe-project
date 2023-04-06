@@ -16,5 +16,7 @@ export class AppComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       this.authService.autoLogin();
     }
+
+    console.log('Hello from AppComponent ngOnInit');
   }
 }
