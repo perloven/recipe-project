@@ -17,7 +17,7 @@ import { AuthModule } from "./auth/auth.module";
     /*ErrorPageComponent,*/
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
